@@ -42,9 +42,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UseItem(IInventoryItem item)
+    public void UseItem(GameObject slot, IInventoryItem item)
     {
         if (item != null)
-            ItemUsed(this, new InventoryEventArgs(item));
+        {
+            mItems.Remove(item);
+            Collider collider = (item as MonoBehaviour).GetComponent<Collider>();
+            if (collider != null)
+                collider.enabled = true;
+            ItemUsed(this, new InventoryEventArgs(slot, item));
+        }
     }
 }
