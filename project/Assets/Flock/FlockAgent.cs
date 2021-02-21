@@ -10,6 +10,15 @@ public class FlockAgent : MonoBehaviour
     Collider agentCollider;
     public Collider AgentCollider { get { return agentCollider; } }
     public Vector3 Velocity { get; set; }
+    public bool IsRabbitInSight { get; set; }
+    public bool Hurt { get; }
+
+    public float viewRadius;
+    [Range(0, 360)]
+    public float viewAngle;
+
+    public LayerMask targetMask;
+    public LayerMask obstacleMask;
 
     void Start()
     {
@@ -19,16 +28,39 @@ public class FlockAgent : MonoBehaviour
     public void Initialize(Flock flock)
     {
         agentFlock = flock;
-        
     }
 
-    private void OnDrawGizmos()
+    public void Update()
     {
-        if (agentFlock == null)
-            return;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, agentFlock.neighborRadius);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, agentFlock.neighborRadius * agentFlock.avoidanceRadiusMultiplier);
+        SeeRabbit();
+    }
+
+    private void SeeRabbit()
+    {
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+
+        foreach (Collider targetInView in targetsInViewRadius)
+        {
+            Transform target = targetInView.transform;
+
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstacleMask))
+                    IsRabbitInSight = true;
+                else
+                    IsRabbitInSight = false;
+            }
+        }
+    }
+
+    private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }

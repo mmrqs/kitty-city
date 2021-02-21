@@ -1167,6 +1167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7070de74a266a4f8572b605ddf9690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewRadius: 50
+  viewAngle: 90
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!54 &586252608604707901
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1198,8 +1206,8 @@ MonoBehaviour:
   _startingState: {fileID: 11400000, guid: 0be741c5a56cc124d9c83c98ac0759e3, type: 2}
   _validStates:
   - {fileID: 11400000, guid: 0be741c5a56cc124d9c83c98ac0759e3, type: 2}
-  - {fileID: 11400000, guid: d4c40397e2afee14ab76cc11e24f873b, type: 2}
-  - {fileID: 11400000, guid: f17efad92005b904e839bde7aedfc943, type: 2}
+  - {fileID: 11400000, guid: 526fe87865adce04892be01fc93d9c20, type: 2}
+  - {fileID: 11400000, guid: 8580047eca082e24c97065a1316e6773, type: 2}
 --- !u!1 &5189788235389159398
 GameObject:
   m_ObjectHideFlags: 0

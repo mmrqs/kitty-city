@@ -16,7 +16,8 @@ public enum FSMStateType
     IDLE,
     WALK,
     DEAD,
-    ATTACK
+    ATTACK,
+    PROJECTILE
 };
 
 public abstract class AbstractFSMState : ScriptableObject
