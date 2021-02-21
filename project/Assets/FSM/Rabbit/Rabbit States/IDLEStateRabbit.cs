@@ -15,7 +15,6 @@ public class IDLEStateRabbit : AbstractFSMState
 
     public override bool EnterState()
     {
-        Debug.Log("coucou");
         base.EnterState();
         _animator.SetInteger("AnimIndex", 0);
         _animator.SetTrigger("Next");
