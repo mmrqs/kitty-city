@@ -26,6 +26,8 @@ public class AnimatorParamatersChange : MonoBehaviour
 
     private Rigidbody rigidBodyApple;
 
+    public int Life { get; protected set; }
+
 
 
     void Start()
@@ -34,6 +36,7 @@ public class AnimatorParamatersChange : MonoBehaviour
         m_animator = GetComponent<Animator>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
         cam = Camera.main;
+        Life = 100;
 
         inventory.ItemUsed += Inventory_ItemUsed;
         inventory.ItemRemoved += Inventory_ItemRemoved;
@@ -93,9 +96,11 @@ public class AnimatorParamatersChange : MonoBehaviour
     {
         IInventoryItem item = collisionInfo.collider.GetComponent<IInventoryItem>();
         if (item != null)
-        {
             inventory.AddItem(item);
-        }
+
+        // If the rabbit is touched by an ennemy
+        if (collisionInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ennemy"))      
+            Hurted();   
     }
 
     public void LaunchProjectile(Rigidbody bulletPrefabs, GameObject cursor, Transform shootPoint, LayerMask layer)
@@ -135,5 +140,11 @@ public class AnimatorParamatersChange : MonoBehaviour
         result *= Vxz;
         result.y = Vy;
         return result;
+    }
+
+    private void Hurted()
+    {
+        Life -= 20;
+        rb.AddForce(new Vector3(0.0f, 0.0f, -200.0f), ForceMode.Impulse);
     }
 }

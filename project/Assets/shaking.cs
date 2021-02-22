@@ -20,7 +20,6 @@ public class shaking : MonoBehaviour
 	void Start()
     {
 		shakeText.SetActive(false);
-        //Shake();
     }
 
 	void Update()
@@ -74,7 +73,7 @@ public class shaking : MonoBehaviour
 		{
 			float x = Random.Range(-1.37f, 1.63f);
 			float y = Random.Range(-1.66f, 1.63f);
-			Vector3 spawnPosition = new Vector3(spawnValues.x + 1, spawnValues.y + 2, spawnValues.z + 1);
+			Vector3 spawnPosition = new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y + 2, gameObject.transform.position.z + 1);
 			Instantiate(
 				fruit,
 				spawnPosition,

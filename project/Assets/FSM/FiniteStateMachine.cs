@@ -15,13 +15,12 @@ public class FiniteStateMachine : MonoBehaviour
     {
         _currentState = null;
         _fsmStates = new Dictionary<FSMStateType, AbstractFSMState>();
-        
-        FlockAgent flockAgent = GetComponent<FlockAgent>();
-        Animator animator = GetComponent<Animator>();
 
+        Animator animator = GetComponent<Animator>();
+        FlockAgent flockAgent = GetComponent<FlockAgent>();
 
         foreach (AbstractFSMState state in _validStates)
-        {
+        {         
             AbstractFSMState st = state.CreateInstance();
             st.SetExecutingFSM(this);
             st.SetExecutingAnimator(animator);
@@ -64,5 +63,6 @@ public class FiniteStateMachine : MonoBehaviour
             EnterState(nextState);
         }
     }
+
     #endregion
 }

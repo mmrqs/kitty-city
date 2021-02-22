@@ -14,7 +14,7 @@ public class IDLEApple : AbstractFSMState
     public override bool EnterState()
     {
         base.EnterState();
-        
+        _gameObject.layer = LayerMask.NameToLayer("IDLE");
         EnteredState = true;
         return true;
     }
@@ -23,7 +23,7 @@ public class IDLEApple : AbstractFSMState
     {
         if (EnteredState)
         {   
-            if ()
+            if (_gameObject.transform.position.y > 0.74)
                 _fsm.EnterState(FSMStateType.PROJECTILE);
         }
     }
@@ -36,6 +36,6 @@ public class IDLEApple : AbstractFSMState
 
     public override AbstractFSMState CreateInstance()
     {
-        return ScriptableObject.CreateInstance<IDLEcat>();
+        return ScriptableObject.CreateInstance<IDLEApple>();
     }
 }

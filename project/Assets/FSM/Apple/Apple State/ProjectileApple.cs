@@ -2,17 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileApple : MonoBehaviour
+[CreateAssetMenu(menuName = "FSM/Apple States Object/Projectile")]
+public class ProjectileApple : AbstractFSMState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnEnable()
     {
-        
+        base.OnEnable();
+        StateType = FSMStateType.PROJECTILE;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool EnterState()
     {
-        
+        base.EnterState();
+        _gameObject.layer = LayerMask.NameToLayer("Projectile");
+        EnteredState = true;
+        return true;
+    }
+
+    public override void UpdateState()
+    {
+        if (EnteredState)
+        {
+            if (_gameObject.transform.position.y <= 0.74)
+                _fsm.EnterState(FSMStateType.IDLE);
+        }
+    }
+
+    public override bool ExitState()
+    {
+        base.ExitState();
+        return true;
+    }
+
+    public override AbstractFSMState CreateInstance()
+    {
+        return ScriptableObject.CreateInstance<ProjectileApple>();
     }
 }

@@ -14,7 +14,6 @@ public class Deadcat : AbstractFSMState
     public override bool EnterState()
     {
         base.EnterState();
-        _animator.Play("Base Layer.walk");
         EnteredState = true;
         return true;
     }
@@ -23,9 +22,10 @@ public class Deadcat : AbstractFSMState
     {
         if (EnteredState)
         {
-            Vector3 velocity = _flockAgent.Velocity;
-            _gameObject.transform.forward = velocity.normalized;
-            _gameObject.transform.position += velocity * Time.deltaTime;
+            _flockAgent.RemoveMySelfFromFlock();
+            Destroy(_gameObject);         
+            Destroy(this);
+            Destroy(_fsm);
         }
     }
 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Flock : MonoBehaviour
 {
     public FlockAgent agentPrefab;
-    List<FlockAgent> agents = new List<FlockAgent>();
+    public List<FlockAgent> agents = new List<FlockAgent>();
+
     public FlockBehavior behavior;
 
     public Vector3 spawnValues;
@@ -40,7 +41,7 @@ public class Flock : MonoBehaviour
 
         for (int i = 0; i < startingCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(spawnValues.x + Random.Range(-50f, 50f), 0f, spawnValues.z + Random.Range(-50f, 50f));
+            Vector3 spawnPosition = new Vector3(spawnValues.x + Random.Range(-50f, 50f), 0.1f, spawnValues.z + Random.Range(-50f, 50f));
             FlockAgent newAgent = Instantiate(
                 agentPrefab,
                 spawnPosition,

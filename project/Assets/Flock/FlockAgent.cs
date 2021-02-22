@@ -11,7 +11,8 @@ public class FlockAgent : MonoBehaviour
     public Collider AgentCollider { get { return agentCollider; } }
     public Vector3 Velocity { get; set; }
     public bool IsRabbitInSight { get; set; }
-    public bool Hurt { get; }
+    public bool Hurt { get; private set; }
+    public Transform Target { get; private set; }
 
     public float viewRadius;
     [Range(0, 360)]
@@ -19,8 +20,9 @@ public class FlockAgent : MonoBehaviour
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
+    public Transform target;
 
-    void Start()
+    public void Start()
     {
         agentCollider = GetComponent<Collider>();
     }
@@ -28,6 +30,7 @@ public class FlockAgent : MonoBehaviour
     public void Initialize(Flock flock)
     {
         agentFlock = flock;
+        Target = target;
     }
 
     public void Update()
@@ -62,5 +65,18 @@ public class FlockAgent : MonoBehaviour
             angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        {
+            Hurt = true;
+        }
+    }
+
+    public void RemoveMySelfFromFlock()
+    {
+        agentFlock.agents.Remove(this);
     }
 }

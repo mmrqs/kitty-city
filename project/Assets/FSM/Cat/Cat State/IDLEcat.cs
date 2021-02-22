@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FSM/Cat States Object/IDLE")]
 public class IDLEcat : AbstractFSMState
 {
-    private static float ldleduration = 300000000.0f;
+    private static float ldleduration = 3.0f;
     private float timer = 0.0f;
 
     public override void OnEnable()
@@ -25,9 +25,10 @@ public class IDLEcat : AbstractFSMState
     public override void UpdateState()
     {
         if (EnteredState)
-        {
+        {                     
+            if (_flockAgent.Hurt)
+                _fsm.EnterState(FSMStateType.DEAD);
             timer += Time.deltaTime;
-
             //we stay in the ldle state for 3 seconds
             if (timer > ldleduration)
                 _fsm.EnterState(FSMStateType.WALK);
