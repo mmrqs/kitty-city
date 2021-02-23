@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private Transform bar;
-    public AnimatorParamatersChange target;
+    public Player target;
     private float Health { get; set; }
 
     // Start is called before the first frame update

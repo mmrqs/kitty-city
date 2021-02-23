@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorParamatersChange : MonoBehaviour
+public class Player : MonoBehaviour
 {
-
     private Animator m_animator;
     public Vector3 jump;
     public float jumpForce = 2.0f;
@@ -99,8 +98,8 @@ public class AnimatorParamatersChange : MonoBehaviour
             inventory.AddItem(item);
 
         // If the rabbit is touched by an ennemy
-        if (collisionInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ennemy"))      
-            Hurted();   
+        if (collisionInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ennemy"))
+            Hurted();
     }
 
     public void LaunchProjectile(Rigidbody bulletPrefabs, GameObject cursor, Transform shootPoint, LayerMask layer)
