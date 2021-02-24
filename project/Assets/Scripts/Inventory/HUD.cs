@@ -17,15 +17,18 @@ public class HUD : MonoBehaviour
 
     private void InventoryScript_ItemAdded(object sender, InventoryEventArgs e)
     {
-        Transform inventoryPanel = transform.Find("Inventory");
+        Transform inventoryPanel = transform.Find(Constants.INVENTORY_LABEL);
         foreach(Transform slot in inventoryPanel)
         {
             Image image = slot.GetChild(0).GetComponent<Image>();
             ItemDragHandler itemDragHandler = slot.GetChild(0).GetComponent<ItemDragHandler>();
 
+            // We check if this slot is available ie if the image is enabled
             if (!image.enabled)
             {
+                // We enabled the image
                 image.enabled = true;
+                // We add the sprite of the item to this image
                 image.sprite = e.Item.Image;
                 itemDragHandler.Item = e.Item;
                 break;
@@ -35,19 +38,24 @@ public class HUD : MonoBehaviour
 
     private void Inventory_ItemRemoved(object sender, InventoryEventArgs e)
     {
-        Image image = e.Slot.transform.GetChild(0).GetComponent<Image>();
-        ItemDragHandler itemDragHandler = e.Slot.transform.GetChild(0).GetComponent<ItemDragHandler>();
-        image.enabled = false;
-        image.sprite = null;
-        itemDragHandler.Item = null;
+        EmptySlot(e.Slot);
     }
 
     private void Inventory_ItemUsed(object sender, InventoryEventArgs e)
     {
-        Image image = e.Slot.transform.GetChild(0).GetComponent<Image>();
-        ItemDragHandler itemDragHandler = e.Slot.transform.GetChild(0).GetComponent<ItemDragHandler>();
+        EmptySlot(e.Slot);
+    }
+
+    private void EmptySlot(GameObject slot)
+    {
+        // We get the image of the slot
+        Image image = slot.transform.GetChild(0).GetComponent<Image>();
+        ItemDragHandler itemDragHandler = slot.transform.GetChild(0).GetComponent<ItemDragHandler>();
+        // We desable the image
         image.enabled = false;
+        // We remove the sprite image
         image.sprite = null;
+        // We cancel the drag
         itemDragHandler.Item = null;
     }
 }

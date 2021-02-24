@@ -17,14 +17,14 @@ public class FiniteStateMachine : MonoBehaviour
         _fsmStates = new Dictionary<FSMStateType, AbstractFSMState>();
 
         Animator animator = GetComponent<Animator>();
-        FlockAgent flockAgent = GetComponent<FlockAgent>();
+        Ennemy ennemy = GetComponent<Ennemy>();
 
         foreach (AbstractFSMState state in _validStates)
         {         
             AbstractFSMState st = state.CreateInstance();
             st.SetExecutingFSM(this);
             st.SetExecutingAnimator(animator);
-            st.SetExecutingFlockAgent(flockAgent);
+            st.SetExecutingFlockAgent(ennemy);
             st.SetExecutingGameObject(gameObject);
             _fsmStates.Add(st.StateType, st);
         }

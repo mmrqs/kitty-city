@@ -15,6 +15,9 @@ public interface IInventoryItem
 
 public class InventoryEventArgs : EventArgs
 {
+    public IInventoryItem Item;
+    public GameObject Slot;
+
     public InventoryEventArgs(IInventoryItem item)
     {
         Item = item;
@@ -30,7 +33,5 @@ public class InventoryEventArgs : EventArgs
         Slot = slot;
         Item = item;
     }
-    public IInventoryItem Item;
-    public GameObject Slot;
 }
 

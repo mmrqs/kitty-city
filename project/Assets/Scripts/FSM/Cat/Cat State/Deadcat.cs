@@ -22,6 +22,7 @@ public class Deadcat : AbstractFSMState
     {
         if (EnteredState)
         {
+            FlockAgent _flockAgent = _gameObject.GetComponent<FlockAgent>();
             _flockAgent.RemoveMySelfFromFlock();
             Destroy(_gameObject);         
             Destroy(this);

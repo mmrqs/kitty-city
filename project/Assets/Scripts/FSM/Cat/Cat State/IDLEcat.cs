@@ -26,7 +26,7 @@ public class IDLEcat : AbstractFSMState
     {
         if (EnteredState)
         {                     
-            if (_flockAgent.Hurt)
+            if (_ennemy.Life <= 0)
                 _fsm.EnterState(FSMStateType.DEAD);
             timer += Time.deltaTime;
             //we stay in the ldle state for 3 seconds

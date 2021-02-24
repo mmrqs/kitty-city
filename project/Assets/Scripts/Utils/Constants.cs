@@ -11,4 +11,14 @@ public static class Constants
     public const string VICTORY_SCENE_NAME = "Victory";
 
     public const string PLAYER_MASK = "Player";
+    public const string PROJECTILE_MASK = "Projectile";
+
+    public const string ITEM_IMAGE_INVENTORY_LABEL = "ItemImage";
+    public const string INVENTORY_LABEL = "Inventory";
+
+    public const int NB_SLOTS_INVENTORY = 10;
+
+    public const int PV_PLAYER = 100;
+    public const int DAMAGES_APPLE = 20;
+
 }

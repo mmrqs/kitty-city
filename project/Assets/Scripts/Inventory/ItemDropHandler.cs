@@ -11,8 +11,10 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        RectTransform invPanel = transform as RectTransform;
-        if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
+        RectTransform inventoryPanel = transform as RectTransform;
+
+        // check if the mouse is outside the inventory pannel
+        if(!RectTransformUtility.RectangleContainsScreenPoint(inventoryPanel, Input.mousePosition))
         {
             ItemDragHandler itemDragHandler = eventData.selectedObject.transform.GetChild(0).GetComponent<ItemDragHandler>();
             IInventoryItem item = itemDragHandler.Item;

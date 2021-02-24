@@ -26,7 +26,7 @@ public abstract class AbstractFSMState : ScriptableObject
     protected FiniteStateMachine _fsm;
     protected Animator _animator;
     protected GameObject _gameObject;
-    protected FlockAgent _flockAgent;
+    protected Ennemy _ennemy;
 
     public ExecutionState ExecutionState { get; protected set; }
     public bool EnteredState { get; protected set; }
@@ -68,10 +68,10 @@ public abstract class AbstractFSMState : ScriptableObject
             _gameObject = go;
     }
 
-    public virtual void SetExecutingFlockAgent(FlockAgent agent)
+    public virtual void SetExecutingFlockAgent(Ennemy agent)
     {
         if(agent != null)
-            _flockAgent = agent;
+            _ennemy = agent;
     }
 
     public abstract AbstractFSMState CreateInstance();

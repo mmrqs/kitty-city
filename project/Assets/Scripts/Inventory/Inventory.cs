@@ -5,8 +5,6 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
-    private const int NBSLOTS = 10;
-
     private List<IInventoryItem> mItems = new List<IInventoryItem>();
     public event EventHandler<InventoryEventArgs> ItemAdded;
     public event EventHandler<InventoryEventArgs> ItemRemoved;
@@ -14,7 +12,8 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(IInventoryItem item)
     {
-        if(mItems.Count < NBSLOTS)
+        // if there is enougth space in the inventory, we add the item
+        if(mItems.Count < Constants.NB_SLOTS_INVENTORY)
         {
             Collider collider = (item as MonoBehaviour).GetComponent<Collider>();
             if (collider.enabled)
@@ -22,6 +21,7 @@ public class Inventory : MonoBehaviour
                 collider.enabled = false;
                 mItems.Add(item);
                 item.OnPickup();
+                // We notify the HUD that an item has been added
                 if (ItemAdded != null)
                     ItemAdded(this, new InventoryEventArgs(item));
             }
@@ -29,7 +29,8 @@ public class Inventory : MonoBehaviour
     }
 
     public void EmptySlot(GameObject slot, IInventoryItem item)
-    {     
+    {   
+        // if the item exists
         if (item != null)
         {
             item.OnDrop();
@@ -44,6 +45,7 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(GameObject slot, IInventoryItem item)
     {
+        // if the item exists
         if (item != null)
         {
             mItems.Remove(item);

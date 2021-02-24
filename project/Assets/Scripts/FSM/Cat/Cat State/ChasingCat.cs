@@ -25,10 +25,10 @@ public class ChasingCat : AbstractFSMState
     {
         if (EnteredState)
         {
-            catAgent.destination = _flockAgent.Target.position;
-            if (!_flockAgent.IsRabbitInSight)
+            catAgent.destination = _ennemy.Target.position;
+            if (!_ennemy.IsRabbitInSight)
                 _fsm.EnterState(FSMStateType.WALK);
-            if (_flockAgent.Hurt)
+            if (_ennemy.Life <= 0)
                 _fsm.EnterState(FSMStateType.DEAD);
         }
     }

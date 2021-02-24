@@ -378,6 +378,9 @@ ModelImporter:
   - first:
       74: -9184093488522337696
     second: walk (1)
+  - first:
+      74: -974685036903982594
+    second: die (1)
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -557,11 +560,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk
-      takeName: walk
+      name: die (1)
+      takeName: die
       internalID: 0
-      firstFrame: 61
-      lastFrame: 90
+      firstFrame: 151
+      lastFrame: 165
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -569,7 +572,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -700,7 +703,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 151
     - serializedVersion: 16
       name: jump
       takeName: jump
@@ -1135,7 +1138,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 151
     isReadable: 1
   meshes:
     lODScreenPercentages: []

@@ -24,15 +24,15 @@ public class Walkcat : AbstractFSMState
         if (EnteredState)
         {
             
-            Vector3 velocity = _flockAgent.Velocity;
+            Vector3 velocity = _ennemy.Velocity;
             if (velocity != Vector3.zero)
             {
                 _gameObject.transform.forward = velocity.normalized;
                 _gameObject.transform.position += velocity * Time.deltaTime;
             }
-            if (_flockAgent.Hurt)
+            if (_ennemy.Life <= 0)
                 _fsm.EnterState(FSMStateType.DEAD);
-            if (_flockAgent.IsRabbitInSight)
+            if (_ennemy.IsRabbitInSight)
                 _fsm.EnterState(FSMStateType.CHASING);
         }
     }
