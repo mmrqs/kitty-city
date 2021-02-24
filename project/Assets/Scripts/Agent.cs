@@ -2,8 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Agent : ScriptableObject
-{
-    public AbstractFSMState[] states;
 
-}
