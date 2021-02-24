@@ -40,18 +40,25 @@ public class Player : MonoBehaviour
     private void Inventory_ItemUsed(object sender, InventoryEventArgs e)
     {
         IInventoryItem item = e.Item;
-        GameObject gameObjectItem = (item as MonoBehaviour).gameObject;
-        gameObjectItem.SetActive(true);
+        if(e.Item.Name == "Apple")
+        {
+            GameObject gameObjectItem = (item as MonoBehaviour).gameObject;
+            gameObjectItem.SetActive(true);
 
-        gameObjectItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        gameObjectItem.GetComponent<Rigidbody>().useGravity = false;
+            gameObjectItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            gameObjectItem.GetComponent<Rigidbody>().useGravity = false;
 
-        gameObjectItem.transform.parent = hand.transform;
-        gameObjectItem.transform.localPosition = gameObjectItem.transform.parent.localPosition;
-        gameObjectItem.transform.localRotation = gameObjectItem.transform.parent.localRotation;
+            gameObjectItem.transform.parent = hand.transform;
+            gameObjectItem.transform.localPosition = gameObjectItem.transform.parent.localPosition;
+            gameObjectItem.transform.localRotation = gameObjectItem.transform.parent.localRotation;
 
-        rigidBodyApple = gameObjectItem.GetComponent<Rigidbody>();
-        isAppleInHand = true;
+            rigidBodyApple = gameObjectItem.GetComponent<Rigidbody>();
+            isAppleInHand = true;
+        } else if(e.Item.Name == "Strawberry" && Life < Constants.PV_PLAYER)
+        {
+            Life += 20;
+            e.Item.RemoveMySelf();
+        }     
     }
 
     private void Inventory_ItemRemoved(object sender, InventoryEventArgs e)
@@ -94,7 +101,7 @@ public class Player : MonoBehaviour
             inventory.AddItem(item);
 
         // If the rabbit is touched by an ennemy
-        if (collisionInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ennemy"))
+        if (collisionInfo.collider.gameObject.layer == LayerMask.NameToLayer(Constants.ENNEMY_MASK))
             Hurted();
     }
 
@@ -102,6 +109,7 @@ public class Player : MonoBehaviour
     {
         Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Physics.Raycast(camRay, out hit, 100f, layer))
         {           
             cursor.SetActive(true);

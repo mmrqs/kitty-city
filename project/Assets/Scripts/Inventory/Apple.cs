@@ -39,8 +39,8 @@ public class Apple : MonoBehaviour, IInventoryItem
         }
     }
 
-    public void OnUse()
+    public void RemoveMySelf()
     {
-
+        Destroy(this);
     }
 }

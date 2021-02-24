@@ -14,7 +14,6 @@ public class ItemClickHandler : MonoBehaviour
         if(item != null)
         {
             inventory.UseItem(gameObject, item);
-            item.OnUse();
         }
     }
 }
