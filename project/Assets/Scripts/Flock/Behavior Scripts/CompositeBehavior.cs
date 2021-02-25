@@ -5,12 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Flock/Behavior/Composite")]
 public class CompositeBehavior : FlockBehavior
 {
+    /// <summary>
+    /// List of behaviours to apply to the flock
+    /// </summary>
     public FlockBehavior[] behaviors;
+    /// <summary>
+    /// Weight of the behaviours
+    /// </summary>
     public float[] weights;
 
+    /// <summary>
+    /// Calculates the move of the flock agent according to the behaviours
+    /// </summary>
+    /// <param name="agent">flock agent</param>
+    /// <param name="context">near by agents</param>
+    /// <param name="flock">flock to which the agent belongs</param>
+    /// <returns>a Vector3 of the next move for the agent</returns>
     public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
     {
-        //handle data mismatch
+        // Handle data mismatch
         if (weights.Length != behaviors.Length)
         {
             Debug.LogError("Data mismatch in " + name, this);
@@ -23,6 +36,7 @@ public class CompositeBehavior : FlockBehavior
         //iterate through behaviors
         for (int i = 0; i < behaviors.Length; i++)
         {
+            // we calculate the move of the agent according to the behaviour and multiply it by its weight
             Vector3 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];
 
             if (partialMove != Vector3.zero)
@@ -37,6 +51,7 @@ public class CompositeBehavior : FlockBehavior
 
             }
         }
+        // we set the y to zero because the agents can't fly
         move.y = 0;
         return move;
     }

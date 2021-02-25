@@ -22,4 +22,10 @@ public static class Constants
     public const int PV_PLAYER = 100;
     public const int DAMAGES_APPLE = 20;
 
+    public const string HEALTH_BAR_LABEL = "Bar";
+    public const string HEALTH_BAR_ENNEMY = "Bar Ennemy";
+    public const string HEALTH_BAR_SPRITE_LABEL= "BarSprite";
+
+    public const string APPLE_OBJECT = "Apple";
+    public const string STRAWBERRY_OBJECT = "Strawberry";
 }

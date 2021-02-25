@@ -2,23 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// State of a spider attacking
+/// </summary>
 [CreateAssetMenu(menuName = "FSM/Spider States Object/Attack")]
 public class SpiderAttack : AbstractFSMState
 {
+    /// <summary>
+    /// Called when the state is loaded
+    /// </summary>
     public override void OnEnable()
     {
-        base.OnEnable();
         StateType = FSMStateType.ATTACK;
     }
-
+    /// <summary>
+    /// Enters in the attack state
+    /// plays the attack animation
+    /// </summary>
+    /// <returns></returns>
     public override bool EnterState()
     {
-        base.EnterState();
         _animator.Play("Base Layer.attack");
         EnteredState = true;
         return true;
     }
 
+    /// <summary>
+    /// While the spider is alive and the rabbit is near, we stay in this state
+    /// If the rabbit is not near, we hunt it ie we enter in the Chasing state
+    /// If the spider is not alive, we enter in the dead state
+    /// </summary>
     public override void UpdateState()
     {
         if (EnteredState)
@@ -32,10 +45,13 @@ public class SpiderAttack : AbstractFSMState
 
     public override bool ExitState()
     {
-        base.ExitState();
         return true;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>instance of SpiderAttack</returns>
     public override AbstractFSMState CreateInstance()
     {
         return ScriptableObject.CreateInstance<SpiderAttack>();
