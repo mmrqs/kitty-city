@@ -7,10 +7,10 @@ Help him find Excarrotbur in order to save the city.
 Move the player to the big carrot in both level avoiding the different ennemies.
 
 ## How to play ?
-`Z` to make the rabbit go forward
-`A` to make the rabbit stop
-`Move the mouse` to move the camera
-`Click on an item in the inventory` to use it.
+- `Z` to make the rabbit go forward
+- `A` to make the rabbit stop
+- `Move the mouse` to move the camera
+- `Click on an item in the inventory` to use it.
 
 ## Inventory items
 `Strawberries` to restore the player life
@@ -24,7 +24,7 @@ Move the player to the big carrot in both level avoiding the different ennemies.
 
 
 **Damages :**
-Took 20 points of life from the player when a cat touches him.
+Takes 20 points of life from the player when a cat touches him.
 <br/>
 
 **Points of life :**
@@ -37,7 +37,7 @@ The `Spider` is the final boss of the game, when it sees the player it hunts him
 <br/>
 
 **Damages :**
-Took 20 points of life from the player when the spider touches him.
+Takes 20 points of life from the player when the spider touches him.
 <br/>
 
 **Points of life :**
