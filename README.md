@@ -11,6 +11,7 @@ Move the player to the big carrot in both level avoiding the different ennemies.
 - `A` to make the rabbit stop
 - `Move the mouse` to move the camera
 - `Click on an item in the inventory` to use it.
+- `Drag an item outside the inventory` to drop the item
 
 ## Inventory items
 `Strawberries` to restore the player life
